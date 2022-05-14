@@ -1,6 +1,6 @@
 export default function initBookModel(sequelize, DataTypes) {
   return sequelize.define(
-    'book',
+    'books',
     {
       id: {
         allowNull: false,
