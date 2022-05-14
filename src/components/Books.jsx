@@ -20,7 +20,6 @@ export default function Books({ bookList, setbookList }) {
 
   const newBooks = bookList.map((x) => (
     <div className="col card w-96 bg-base-100">
-
       <figure><img className="img-fluid image_size" src={x.image} alt="books" /></figure>
       <div className="card-body">
         <h3 className="card-title">{x.title}</h3>

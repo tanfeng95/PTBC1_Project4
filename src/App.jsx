@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 import Book from './components/book.jsx';
 import Books from './components/Books.jsx';
+import Cart from './components/cart.jsx';
+import Checkout from './components/checkout.jsx';
 
 export default function App() {
   const [bookList, setbookList] = useState([]);
@@ -17,6 +19,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Books bookList={bookList} setbookList={setbookList} />} />
           <Route path="/book/:id" element={<Book />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route
             path="*"
             element={(

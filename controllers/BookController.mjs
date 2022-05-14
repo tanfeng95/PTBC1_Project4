@@ -12,11 +12,7 @@ export default function initBookController(db) {
   const findBookById = async (request, reponse) => {
     console.log('hello');
     console.log(request.params.id);
-    const books = await db.Book.findAll({
-      where: {
-        id: request.params.id,
-      },
-    });
+    const books = await db.Book.findByPk(request.params.id);
     reponse.send(books);
   };
   return {
