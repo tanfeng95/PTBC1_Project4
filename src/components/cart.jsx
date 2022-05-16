@@ -4,8 +4,9 @@ import axios from 'axios';
 import { Link, Outlet } from 'react-router-dom';
 import Navbar from './NavBar.jsx';
 
-export default function Cart() {
-  const [checkState, setCheckState] = useState([]);
+export default function Cart({
+  checkState, setCheckState, quanitylist, setQuantityList,
+}) {
   const [itemlist, setItemList] = useState([]);
   const [total, setTotal] = useState(0);
 
@@ -14,42 +15,52 @@ export default function Cart() {
     const keys = Object.keys(localStorage);
     // console.log(keys);
     for (let i = 0; i < keys.length; i++) {
-      console.log(JSON.parse(localStorage.getItem(keys[i])));
+      // console.log(JSON.parse(localStorage.getItem(keys[i])));
       values.push(JSON.parse(localStorage.getItem(keys[i])));
     }
     // console.log(values);
     setItemList(values);
     setCheckState(new Array(values.length).fill(false));
+    setQuantityList(new Array(values.length).fill(1));
   }, []);
 
   const handleOnChange = (position) => {
     const updateCheckState = checkState.map((item, index) => {
-      // console.log(`index =${index}`);
-      // console.log(`position =${position}`);
       if (index === position)
       {
         return !item;
       }
       return item;
-      // index === position ? !item : item;
     });
-
     setCheckState(updateCheckState);
-
+    console.log(updateCheckState);
     const totalPrice = updateCheckState.reduce(
       (sum, currentState, index) => {
         if (currentState === true) {
-          return Number(sum) + Number(itemlist[index].price);
+          console.log(quanitylist[index]);
+          return Number(sum) + (Number(itemlist[index].price) * Number(quanitylist[index]));
         }
         return Number(sum);
       },
       0,
     );
     setTotal(totalPrice);
+    const isItemChecked = updateCheckState.map(((isTrue, index) => {
+      if (isTrue === true) {
+        console.log(itemlist[index]);
+      }
+    }));
   };
 
-  const handleMakePayment = () => {
-
+  const handleSelectValue = (position, targetValue) => {
+    const updateQuantityList = quanitylist.map((value, index) => {
+      if (index === position) {
+        return Number(targetValue);
+      }
+      return value;
+    });
+    setQuantityList(updateQuantityList);
+    console.log(updateQuantityList);
   };
 
   // show items in cart and total value
@@ -72,8 +83,8 @@ export default function Cart() {
         {' '}
         {items.quanity}
       </p> */}
-      <select className="select select-bordered">
-        <option disabled selected>1</option>
+      <select className="select select-bordered" onChange={(event) => handleSelectValue(index, event.target.value)}>
+        <option>1</option>
         <option>2</option>
         <option>3</option>
         <option>4</option>
@@ -88,7 +99,7 @@ export default function Cart() {
 
   return (
     <div>
-
+      <Navbar />
       {cartList}
       <div>
         <h2>order Summary</h2>
@@ -99,7 +110,7 @@ export default function Cart() {
       </div>
       <div>
         <Link to="/checkout">
-          <button className="btn btn-primary" type="button" onClick={handleMakePayment}>checkout</button>
+          <button className="btn btn-primary" type="button">checkout</button>
         </Link>
 
       </div>

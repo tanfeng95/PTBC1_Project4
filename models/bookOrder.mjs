@@ -1,6 +1,6 @@
 export default function initBookOrderModel(sequelize, DataTypes) {
   return sequelize.define(
-    'book_order',
+    'book_orders',
     {
       id: {
         allowNull: false,
@@ -8,7 +8,6 @@ export default function initBookOrderModel(sequelize, DataTypes) {
         primaryKey: true,
         type: DataTypes.INTEGER,
       },
-      // We define the CartItem model to access quantities of items in carts.
       quantity: {
         type: DataTypes.INTEGER,
       },

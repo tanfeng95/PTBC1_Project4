@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import '../styles.scss';
 import axios from 'axios';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from './NavBar.jsx';
 
 export default function Books({ bookList, setbookList }) {
-
   useEffect(() => {
     axios.get('/books')
       .then((result) => {

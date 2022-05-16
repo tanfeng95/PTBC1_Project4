@@ -1,6 +1,6 @@
 export default function initOrderModel(sequelize, DataTypes) {
   return sequelize.define(
-    'category',
+    'orders',
     {
       id: {
         allowNull: false,

@@ -43,12 +43,12 @@ db.BookOrder = initBookOrderModel(sequelize, Sequelize.DataTypes);
 // one to many table
 
 // one user can have many orders
-db.User.belongsTo(db.Order);
-db.Order.hasMany(db.User);
+db.Order.belongsTo(db.User);
+db.User.hasMany(db.Order);
 
 // many to many
-db.Book.belongsToMany(db.Order, { through: db.BookOrder });
-db.Order.belongsToMany(db.Book, { through: db.BookOrder });
+db.Book.belongsToMany(db.Order, { through: 'book_orders', foreignKey: 'book_id' });
+db.Order.belongsToMany(db.Book, { through: 'book_orders', foreignKey: 'order_id' });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
