@@ -17,4 +17,5 @@ export default function routes(app) {
   app.get('/book/:id', bookController.findBookById);
   app.post('/createOrder', orderController.addOrder);
   app.post('/getUser', UserController.findUserById);
+  app.post('/signup', UserController.signup);
 }

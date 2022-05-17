@@ -5,23 +5,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import Navbar from './NavBar.jsx';
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
-  const handleLogin = () => {
+
+  const handleSignup = () => {
     console.log(email);
     console.log(password);
     const input = { name: email, password };
-    axios.post('/getUser', input)
+    axios.post('/signup', input)
       .then((result) => {
         console.log(result);
-        const { data } = result;
-        console.log(data[0].id);
-        setCookie('userId', data[0].id, { path: '/' });
-        setCookie('sessionId', data, { path: '/' });
-        navigate('/');
       }).catch((err) => {
         console.log(err);
       });
@@ -32,7 +27,7 @@ export default function Login() {
       <Navbar />
       <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white border-t-4 border-purple-600 rounded-md shadow-md border-top lg:max-w-md">
-          <h1 className="text-3xl font-semibold text-center text-purple-700">User Login</h1>
+          <h1 className="text-3xl font-semibold text-center text-purple-700">Sign Up</h1>
           <form className="mt-6">
             <div>
               <label htmlFor="email" className="block text-sm text-gray-800">Email</label>
@@ -56,9 +51,9 @@ export default function Login() {
                 <button
                   type="button"
                   className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600"
-                  onClick={handleLogin}
+                  onClick={handleSignup}
                 >
-                  Login
+                  Sign Up
                 </button>
               </div>
             </div>
@@ -78,6 +73,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-
   );
 }
