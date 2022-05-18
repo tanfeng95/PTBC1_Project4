@@ -21,8 +21,21 @@ export default function initOrderController(db) {
       console.log(error);
     }
   };
+  const getOrderByUserId = async (request, response) => {
+    console.log(request.params.id);
+    const userOrder = await db.Order.findAll({
+      where: {
+        user_id: request.params.id,
+      },
+      include: {
+        model: db.Book,
+      },
+    });
+    //console.log(userOrder);
+    response.send({ userOrder });
+  };
   return {
     addOrder,
-
+    getOrderByUserId,
   };
 }

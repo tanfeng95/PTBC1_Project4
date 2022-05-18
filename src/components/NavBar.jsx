@@ -53,7 +53,9 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <a>My Orders</a>
+              <Link to="/orders">
+                <a>My Orders</a>
+              </Link>
             </li>
             <li><a>Logout</a></li>
           </ul>

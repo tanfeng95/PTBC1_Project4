@@ -18,4 +18,5 @@ export default function routes(app) {
   app.post('/createOrder', orderController.addOrder);
   app.post('/getUser', UserController.findUserById);
   app.post('/signup', UserController.signup);
+  app.get('/order/:id', orderController.getOrderByUserId);
 }
