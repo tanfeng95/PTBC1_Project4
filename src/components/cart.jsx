@@ -65,14 +65,15 @@ export default function Cart({
 
   // show items in cart and total value
   const cartList = itemlist.map((items, index) => (
-    <div className="d-flex justify-content-center">
+    <div className="d-flex justify-content-center cart-item">
       <input type="checkbox" className="checkbox" id={items.id} checked={checkState[index]} onChange={() => handleOnChange(index)} />
-      <figure><img src={items.image} alt="Album" /></figure>
-      <h3>
-        title
-        {' '}
+      <div className="image-cart">
+        <figure><img src={items.image} alt="Album" /></figure>
+      </div>
+
+      <h6>
         {items.title}
-      </h3>
+      </h6>
       <p>
         {' '}
         price

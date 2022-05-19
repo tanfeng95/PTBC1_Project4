@@ -38,43 +38,64 @@ export default function Book() {
       <div>
         {book && (
         <>
-          <div className="card lg:card-side bg-base-100 shadow-xl">
-            <figure><img src={`/${book.image}`} alt="Album" /></figure>
-            <div className="card-body">
-              <h2 className="card-title">{book.title}</h2>
-              <p>
-                <h3>book details :</h3>
-                {' '}
-                {book.book_detail}
-              </p>
-              <p>
-                {'price : '}
-                $
-                {' '}
-                {book.price}
-              </p>
-              <p>
-                {' language: '}
+          <div className="book-content">
+            <div className="d-flex book-main">
+              <div className="image-div">
+                <figure><img src={`/${book.image}`} alt="Album" /></figure>
+              </div>
+              <div className="card-body">
+                <h2 className="card-title">{book.title}</h2>
 
-                {' '}
-                {book.language}
-              </p>
-
-              <select className="select select-bordered" onChange={(event) => { setvalue(event.target.value); }}>
-                <option disabled selected>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <div className="card-actions justify-end">
-                <Link to="/cart">
-                  <button className="btn btn-primary" type="button" onClick={handleBuyNowBtn}>buy now</button>
-                </Link>
-                <button className="btn btn-primary" type="button" onClick={handleAddToCartBtn}>add to cart</button>
-
+                <p>
+                  $
+                  {book.price}
+                </p>
+                <p>
+                  {book.language}
+                </p>
+                <select className="select select-bordered" onChange={(event) => { setvalue(event.target.value); }}>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>510</option>
+                </select>
+                <div className="card-actions justify-end">
+                  <Link to="/cart">
+                    <button className="btn btn-primary" type="button" onClick={handleBuyNowBtn}>buy now</button>
+                  </Link>
+                  <button className="btn btn-primary" type="button" onClick={handleAddToCartBtn}>add to cart</button>
+                </div>
               </div>
             </div>
+            <div className="book-details ">
+              <h5 className="bg-base-200">
+                Product details of
+                {' '}
+                {book.title}
+              </h5>
+              <p>{book.book_detail}</p>
+              <hr />
+              <h5 className="bg-base-200">
+                Specification of
+                {' '}
+                {book.title}
+              </h5>
+              <span>Brand :</span>
+              <span>{book.brand}</span>
+              <p />
+              <span>Publisher :</span>
+              <span>{book.publisher}</span>
+              <p />
+              <span>Author</span>
+              <span>{book.author}</span>
+            </div>
+
           </div>
         </>
         ) }

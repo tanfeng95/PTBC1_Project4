@@ -18,19 +18,24 @@ export default function Books({ bookList, setbookList }) {
   }, []);
 
   const newBooks = bookList.map((x) => (
-    <div className="col card w-96 bg-base-100">
-      <figure><img className="img-fluid image_size" src={x.image} alt="books" /></figure>
+    <div className="card  shadow-xl" style={{ width: `${13}rem` }}>
+      <Link to={`/book/${x.id}`}>
+        <figure><img className="img-fluid image-size" src={x.image} alt="books" /></figure>
+      </Link>
       <div className="card-body">
-        <h3 className="card-title">{x.title}</h3>
         <p>
+          {' '}
+          {x.title}
+        </p>
+        <p className="book-price">
           $
           {' '}
           {x.price}
         </p>
       </div>
-      <div className="card-actions justify-end">
+      {/* <div className="card-actions justify-end">
         <Link to={`/book/${x.id}`} style={{ display: 'block', margin: '1rem 0' }} key={x.id}>book</Link>
-      </div>
+      </div> */}
     </div>
   ));
 

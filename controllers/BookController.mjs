@@ -2,7 +2,6 @@ export default function initBookController(db) {
   const FindAllBooks = async (request, response) => {
     try {
       const books = await db.Book.findAll();
-      console.log(books);
       response.send(books);
     } catch (error) {
       console.log(error);
@@ -10,8 +9,6 @@ export default function initBookController(db) {
   };
 
   const findBookById = async (request, reponse) => {
-    console.log('hello');
-    console.log(request.params.id);
     const books = await db.Book.findByPk(request.params.id);
     reponse.send(books);
   };
