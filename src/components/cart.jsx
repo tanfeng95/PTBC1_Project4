@@ -60,8 +60,20 @@ export default function Cart({
       return value;
     });
     setQuantityList(updateQuantityList);
-    console.log(updateQuantityList);
+
+    const totalPrice = checkState.reduce(
+      (sum, currentState, index) => {
+        if (currentState === true) {
+          // console.log(updateQuantityList[index]);
+          return Number(sum) + (Number(itemlist[index].price) * Number(updateQuantityList[index]));
+        }
+        return Number(sum);
+      },
+      0,
+    );
+    setTotal(totalPrice);
   };
+
   const handleDeleteItem = (position) => {
     console.log('delete');
     console.log(position);
@@ -84,21 +96,24 @@ export default function Cart({
       setItemList(values);
     }
   };
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
   // show items in cart and total value
   const cartList = itemlist.map((items, index) => (
-    <div className="d-flex justify-content-center cart-item">
-      <input type="checkbox" className="checkbox" checked={checkState[index]} onChange={() => handleOnChange(index)} />
+    <div className="d-flex justify-content-around cart-item align-items-center">
+      <input type="checkbox" className="checkbox" id={items.id} checked={checkState[index]} onChange={() => handleOnChange(index)} />
       <div className="image-cart">
         <figure><img src={items.image} alt="Album" /></figure>
       </div>
-
-      <h6>
+      <h6 className="cart-item-title">
         {items?.title}
       </h6>
       <div>
         <p>
           {' '}
-          price
+          $
           {items.price}
         </p>
         <button className="btn btn-square" type="button" onClick={() => handleDeleteItem(index)}>
@@ -116,30 +131,30 @@ export default function Cart({
         <option>8</option>
         <option>9</option>
       </select>
-
     </div>
   ));
   return (
     <div>
       <Navbar />
-      {cartList.length > 0 && (
-      <>
-        {cartList}
-      </>
-      ) }
+      <div className="cart-item-list">
+        {cartList.length > 0 && (
+        <>
+          {cartList}
+        </>
+        ) }
+      </div>
 
-      <div>
-        <h2>order Summary</h2>
+      <div className="d-flex align-items-end flex-column
+      cart-order-summary-div"
+      >
+        <h2>Order Summary</h2>
         <div>
           total amount =
           {total}
         </div>
-      </div>
-      <div>
         <Link to="/checkout">
           <button className="btn btn-primary" type="button">checkout</button>
         </Link>
-
       </div>
     </div>
   );

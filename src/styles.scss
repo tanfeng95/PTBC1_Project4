@@ -8,11 +8,9 @@
     max-width: 100%;
 }
 .image-cart{
-        width: 200px;
-    
+        width: 70px;
         padding: 0.25rem;
         background-color: #fff;
-   
         border-radius: 0.25rem;
         max-width: 100%;
 }
@@ -25,6 +23,12 @@ position: absolute;
 }
 .cart-item{
     padding: 20px
+}
+.cart-item-title{
+    width: 400px;
+}
+.cart-order-summary-div{
+    padding: 30px
 }
 @tailwind base;
 @tailwind components;
