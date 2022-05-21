@@ -31,20 +31,18 @@ export default function Checkout({ checkState, quanitylist }) {
     console.log(newTotal);
     sum += newTotal;
     return (
-      <div className="d-flex justify-content-center">
-        <figure><img src={items.image} alt="Album" /></figure>
-        <h3>
-          title
-          {' '}
+      <div className="d-flex justify-content-around cart-item align-items-center">
+        <figure><img className="image-cart" src={items.image} alt="Album" /></figure>
+        <h6 className="cart-item-title">
           {items.title}
-        </h3>
+        </h6>
         <p>
           {' '}
-          price
+          $
           {items.price}
         </p>
         <p>
-          quanity
+          Amount
           {' '}
           {items.quanity}
         </p>
@@ -75,19 +73,24 @@ export default function Checkout({ checkState, quanitylist }) {
   return (
     <div>
       <Navbar />
-      <div>
-        items selected
+      <div className="checkout-div">
+        <h4>Item Selected</h4>
         {itemList}
       </div>
-      <div>
-        order summary
-        $
-        {' '}
-        {sum}
-      </div>
-      <div>
+      <div className="d-flex align-items-end flex-column
+      cart-order-summary-div"
+      >
+        <h6>
+          Order Summary
+        </h6>
+        <div>
+          $
+          {' '}
+          {sum}
+        </div>
         <button className="btn btn-primary" type="button" onClick={handlePlaceOrder}>place Order Now</button>
       </div>
+
       {showModal ? (
         <>
           <div

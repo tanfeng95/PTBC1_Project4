@@ -150,6 +150,7 @@ export default function Cart({
         <h2>Order Summary</h2>
         <div>
           total amount =
+          $
           {total}
         </div>
         <Link to="/checkout">

@@ -18,7 +18,7 @@ export default function Books({ bookList, setbookList }) {
   }, []);
 
   const newBooks = bookList.map((x) => (
-    <div className="card  shadow-xl" style={{ width: `${13}rem` }}>
+    <div className="card shadow-x card-div" style={{ width: `${13}rem` }}>
       <Link to={`/book/${x.id}`}>
         <figure><img className="img-fluid image-size" src={x.image} alt="books" /></figure>
       </Link>
@@ -42,7 +42,7 @@ export default function Books({ bookList, setbookList }) {
   return (
     <div>
       <Navbar />
-      <div className="row over d-flex justify-content-center">
+      <div className="row over d-flex justify-content-around">
         {bookList.length > 0 && (
         <>
           {newBooks}

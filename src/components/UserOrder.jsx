@@ -23,27 +23,43 @@ export default function UserOrder() {
     console.log(x);
     const date = new Date();
     return (
-      <div className="d-flex justify-content-center">
+      <div className="order-div">
         <div>
           <p>
             order id =
             {' '}
             {x.id}
-
           </p>
           <p>
             purchase date =
             {' '}
             {new Date(x.purchase_date).toLocaleDateString()}
-
           </p>
-          {x.books.map((element) => {
+          {x.books.map((element, index) => {
             console.log(element);
             return (
-              <div>
-                <p>{element.title}</p>
-                <p>{element.price}</p>
-                <p>{element.book_orders.quantity}</p>
+              <div className="d-flex align-items-center ">
+                <p className="order-item">
+                  Item
+                  {' '}
+                  {index + 1}
+                </p>
+                <div className="image-cart">
+                  <figure><img src={element.image} alt="Album" /></figure>
+                </div>
+                <p className="cart-item-title">{element.title}</p>
+                <p className="order-item">
+                  $
+                  {element.price}
+                </p>
+                <div className="d-flex flex-column quanity-style">
+                  <p>
+                    Quanity
+                  </p>
+                  <p>
+                    {element.book_orders.quantity}
+                  </p>
+                </div>
 
               </div>
             );

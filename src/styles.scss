@@ -26,9 +26,27 @@ position: absolute;
 }
 .cart-item-title{
     width: 400px;
+        padding: 2vw
+}
+.checkout-div{
+    padding: 30px
 }
 .cart-order-summary-div{
     padding: 30px
+}
+.quanity-style{
+    text-align: center;
+    padding: 2vw
+}
+.order-div{
+    padding: 5vw
+}
+.order-item{
+    padding: 2vw
+}
+
+.card-div{
+    padding: 2vw;
 }
 @tailwind base;
 @tailwind components;
