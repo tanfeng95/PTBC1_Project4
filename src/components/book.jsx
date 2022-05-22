@@ -104,7 +104,7 @@ export default function Book() {
               <span>Publisher :</span>
               <span>{book.publisher}</span>
               <p />
-              <span>Author</span>
+              <span>Author :</span>
               <span>{book.author}</span>
             </div>
 

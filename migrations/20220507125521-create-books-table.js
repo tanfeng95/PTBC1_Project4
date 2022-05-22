@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       title: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long'),
       },
       price: {
         type: Sequelize.DECIMAL(10, 2),
@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       book_detail: {
-        type: Sequelize.STRING(1000),
+        type: Sequelize.TEXT('long'),
       },
       brand: {
         type: Sequelize.STRING,

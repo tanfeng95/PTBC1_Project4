@@ -18,7 +18,7 @@ export default function initBookModel(sequelize, DataTypes) {
         type: DataTypes.STRING,
       },
       book_detail: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
       brand: {
         type: DataTypes.STRING,
