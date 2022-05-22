@@ -1,9 +1,9 @@
 export default function initOrderController(db) {
   const addOrder = async (request, response) => {
     try {
-      console.log(request.body);
+      console.log(request.body.userId);
       const newOrder = await db.Order.create({
-        user_id: 1,
+        user_id: Number(request.body.userId),
         purchase_date: new Date(),
       });
 
@@ -31,7 +31,6 @@ export default function initOrderController(db) {
         model: db.Book,
       },
     });
-    //console.log(userOrder);
     response.send({ userOrder });
   };
   return {

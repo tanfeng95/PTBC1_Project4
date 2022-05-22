@@ -13,7 +13,7 @@ const getHash = (input) => {
 };
 
 export default function initUserController(db) {
-  const findUserById = async (request, reponse) => {
+  const login = async (request, reponse) => {
     const user = await db.User.findAll({
       where: {
         username: request.body.name,
@@ -44,8 +44,12 @@ export default function initUserController(db) {
     const createUser = await db.User.create(user);
     response.send(createUser);
   };
+  const getUserById = async (request, response) => {
+    console.log(request.body);
+  };
   return {
-    findUserById,
+    getUserById,
+    login,
     signup,
   };
 }

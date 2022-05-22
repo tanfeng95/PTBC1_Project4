@@ -2,7 +2,10 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import methodOverride from 'method-override';
 import bindRoutes from './routes.mjs';
+import cors  from 'cors';
+import jsSHA from 'jssha';
 
+const SALT = process.env['SALT'];
 // Initialise Express instance
 const app = express();
 // Set the Express view engine to expect EJS templates
@@ -50,6 +53,9 @@ if (env === 'development') {
   }));
 }
 app.use(express.static('images'));
+app.use(cors());
+
+
 
 // Bind route definitions to the Express application
 bindRoutes(app);

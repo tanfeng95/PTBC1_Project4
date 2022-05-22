@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import '../styles.scss';
 import axios from 'axios';
-import { Link, Outlet } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+
 import Navbar from './NavBar.jsx';
 
 export default function Cart({
@@ -9,6 +11,11 @@ export default function Cart({
 }) {
   const [itemlist, setItemList] = useState([]);
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
+
+  if (Cookies.get('sessionId') === undefined) {
+    navigate('/login');
+  }
 
   useEffect(() => {
     const values = [];

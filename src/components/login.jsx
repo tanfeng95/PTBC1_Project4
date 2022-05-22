@@ -2,25 +2,45 @@ import React, { useEffect, useState } from 'react';
 import '../styles.scss';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
+import uniqid from 'uniqid';
+import jsSHA from 'jssha';
 import Navbar from './NavBar.jsx';
 
-export default function Login() {
+export default function Login({ setCookie }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
+  const SALT = 'SALT';
+
+  const getHash = (input) => {
+  // create new SHA object
+    const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
+    // create an unhashed cookie string based on user ID and salt
+    const unhashedString = `${input}-${SALT}`;
+    // generate a hashed cookie string using SHA object
+    shaObj.update(unhashedString);
+    return shaObj.getHash('HEX');
+  };
+
   const handleLogin = () => {
     console.log(email);
     console.log(password);
     const input = { name: email, password };
-    axios.post('/getUser', input)
+    axios.post('/login', input)
       .then((result) => {
         console.log(result);
         const { data } = result;
         console.log(data[0].id);
         setCookie('userId', data[0].id, { path: '/' });
-        setCookie('sessionId', data, { path: '/' });
+
+        const loggedInCookie = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
+        const unHashCookie = `${data[0].id}-${SALT}`;
+        loggedInCookie.update(unHashCookie);
+        const hashCookieString = loggedInCookie.getHash('HEX');
+
+        setCookie('sessionId', hashCookieString, { path: '/' });
+        // setCookie('sessionId', data, { path: '/' });
+        // setCookie('sessionId', uniqid(), { path: '/' });
         navigate('/');
       }).catch((err) => {
         console.log(err);

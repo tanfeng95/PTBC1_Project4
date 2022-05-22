@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles.scss';
 import axios from 'axios';
 import { Link, Outlet } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import Navbar from './NavBar.jsx';
 
 export default function Checkout({ checkState, quanitylist }) {
@@ -52,7 +53,8 @@ export default function Checkout({ checkState, quanitylist }) {
 
   const handlePlaceOrder = () => {
     setShowModal(true);
-    const input = { newOrder: checkoutList };
+    console.log(Cookies.get('userId'));
+    const input = { newOrder: checkoutList, userId: Cookies.get('userId') };
     axios.post('/createOrder', input)
       .then((result) => {
         console.log(result);

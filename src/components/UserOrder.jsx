@@ -3,24 +3,34 @@ import '../styles.scss';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 import Navbar from './NavBar.jsx';
 
 export default function UserOrder() {
   const [orderList, setOrderList] = useState([]);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    axios.get('/order/1')
+    let userId;
+    if (Cookies.get('userId') !== undefined) {
+      userId = Cookies.get('userId');
+    } else if (Cookies.get('sessionId') === undefined) {
+      navigate('/login');
+      return;
+    }
+    axios.get(`/order/${userId}`)
       .then((result) => {
         const { data } = result;
         console.log(data);
         const { userOrder } = data;
-        console.log(userOrder);
+        // console.log(userOrder);
         setOrderList([...userOrder]);
       }).catch((err) => {
         console.log(err);
       });
   }, []);
   const newOrder = orderList.map((x) => {
-    console.log(x);
+    // console.log(x);
     const date = new Date();
     return (
       <div className="order-div">
@@ -71,6 +81,7 @@ export default function UserOrder() {
   return (
     <div>
       <Navbar />
+      <h4 className="order-div">My Orders</h4>
       {orderList.length > 0 && (
         <>
           {newOrder}

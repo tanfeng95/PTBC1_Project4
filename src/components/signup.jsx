@@ -17,6 +17,7 @@ export default function Signup() {
     axios.post('/signup', input)
       .then((result) => {
         console.log(result);
+        navigate('/login');
       }).catch((err) => {
         console.log(err);
       });
@@ -58,7 +59,7 @@ export default function Signup() {
               </div>
             </div>
           </form>
-          <p className="mt-8 text-xs font-light text-center text-gray-700">
+          {/* <p className="mt-8 text-xs font-light text-center text-gray-700">
             {' '}
             Don't have an account?
             {' '}
@@ -69,7 +70,7 @@ export default function Signup() {
               </a>
             </Link>
 
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

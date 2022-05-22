@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../styles.scss';
 import axios from 'axios';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import {
+  useParams, Link, Outlet, useNavigate,
+} from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import Cookies from 'js-cookie';
 import Navbar from './NavBar.jsx';
 import Modal from './modal.jsx';
 
@@ -11,7 +15,7 @@ export default function Book() {
   const [name, setName] = useLocalStorage(`book id${book?.id}`, 'Bob');
   const [showModal, setShowModal] = React.useState(false);
   const params = useParams();
-  console.log(params.id);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`/book/${params.id}`)
@@ -22,11 +26,19 @@ export default function Book() {
   }, []);
 
   const handleAddToCartBtn = () => {
+    if (Cookies.get('sessionId') === undefined) {
+      navigate('/login');
+      return;
+    }
     book.quanity = value;
     setName(book);
     setShowModal(true);
   };
   const handleBuyNowBtn = () => {
+    if (Cookies.get('sessionId') === undefined) {
+      navigate('/login');
+      return;
+    }
     book.quanity = value;
     setName(book);
   };

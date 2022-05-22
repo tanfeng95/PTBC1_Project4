@@ -18,7 +18,7 @@ export default function Books({ bookList, setbookList }) {
   }, []);
 
   const newBooks = bookList.map((x) => (
-    <div className="card shadow-x card-div" style={{ width: `${13}rem` }}>
+    <div className="card shadow-x card-div" key={x.id} style={{ width: `${13}rem` }}>
       <Link to={`/book/${x.id}`}>
         <figure><img className="img-fluid image-size" src={x.image} alt="books" /></figure>
       </Link>

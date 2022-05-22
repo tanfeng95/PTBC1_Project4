@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles.scss';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
 
 export default function Navbar() {
@@ -9,14 +10,17 @@ export default function Navbar() {
   const [showModal, setShowModal] = React.useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   useEffect(() => {
-    const values = [];
-    const keys = Object.keys(localStorage);
-    // console.log(keys);
-    for (let i = 0; i < keys.length; i++) {
+    let userId;
+    if (Cookies.get('userId') !== undefined) {
+      const values = [];
+      const keys = Object.keys(localStorage);
+      // console.log(keys);
+      for (let i = 0; i < keys.length; i++) {
       // console.log(JSON.parse(localStorage.getItem(keys[i])));
-      values.push(JSON.parse(localStorage.getItem(keys[i])));
+        values.push(JSON.parse(localStorage.getItem(keys[i])));
+      }
+      setCartItem(values);
     }
-    setCartItem(values);
   }, []);
 
   const handleLogout = () => {
