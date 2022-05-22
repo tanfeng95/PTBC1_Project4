@@ -4,8 +4,8 @@
    Book Shopping App using react , javascript , the goal is to practice react and understand the though process and difference between OOP architecture
 
 2. Project Description
-   - a simple book shopping app using react, webpack and express to create this application
-   - this app include a index, cart , checkout , order page
+  - a simple book shopping app using react, webpack and express to create this application
+  - this app include a index, cart , checkout , order page
   - future implementation , payment method , rating system , reviews
 
 3. How to Install and Run the Project
