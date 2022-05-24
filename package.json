@@ -63,6 +63,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.1",
     "@heroicons/react": "^1.0.6",
+    "@mui/material": "^5.8.1",
     "cookie-parser": "^1.4.5",
     "daisyui": "^2.14.3",
     "dotenv": "^16.0.1",

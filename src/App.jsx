@@ -22,7 +22,7 @@ export default function App() {
   const [quanitylist, setQuantityList] = useState([]);
   const [cookies, setCookie, removeCookie] = useCookies(['cookie-name']);
   const navigate = useNavigate();
-  console.log(cookies);
+  // console.log(cookies);
   // console.log(cookies.sessionId);
   return (
     <div>

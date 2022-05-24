@@ -1,7 +1,25 @@
+import pkg from 'sequelize';
+
+const { Op } = pkg;
+
 export default function initBookController(db) {
   const FindAllBooks = async (request, response) => {
     try {
-      const books = await db.Book.findAll();
+      // console.log(request.query.search);
+      let books;
+      if (request.query.search) {
+        // console.log('inside search');
+        books = await db.Book.findAll({
+          where: {
+            title: {
+              [Op.like]: `%${request.query.search}%`,
+            },
+          },
+        });
+      } else {
+        books = await db.Book.findAll();
+      }
+      // console.log(books);
       response.send(books);
     } catch (error) {
       console.log(error);
