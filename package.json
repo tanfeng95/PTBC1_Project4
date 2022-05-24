@@ -73,6 +73,9 @@
     "method-override": "^3.0.0",
     "pg": "^8.5.1",
     "react-cookie": "^4.1.1",
+    "react-img-zoom": "^0.1.0",
+    "react-inner-image-zoom": "^3.0.0",
+    "react-medium-image-zoom": "^4.4.3",
     "react-router-dom": "^6.3.0",
     "sequelize": "^6.3.5",
     "uniqid": "^5.4.0"

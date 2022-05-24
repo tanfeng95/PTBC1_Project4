@@ -4,10 +4,10 @@ import axios from 'axios';
 import {
   useParams, Link, Outlet, useNavigate,
 } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import Cookies from 'js-cookie';
+
+import Zoom from 'react-img-zoom';
 import Navbar from './NavBar.jsx';
-import Modal from './modal.jsx';
 
 export default function Book() {
   const [book, setbook] = useState(null);
@@ -52,9 +52,15 @@ export default function Book() {
         <>
           <div className="book-content">
             <div className="d-flex book-main">
-              <div className="image-div">
+              {/* <div className="image-div">
                 <figure><img src={`/${book.image}`} alt="Album" /></figure>
-              </div>
+              </div> */}
+              <Zoom
+                img={`/${book.image}`}
+                zoomScale={3}
+                width={400}
+                height={300}
+              />
               <div className="card-body">
                 <h2 className="card-title">{book.title}</h2>
 
