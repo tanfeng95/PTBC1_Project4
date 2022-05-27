@@ -19,7 +19,10 @@ export default function initUserController(db) {
         username: request.body.name,
       },
     });
-    console.log(user);
+    if (typeof user[0] === 'undefined') {
+      reponse.status(200).send({ noUser: true, error: 'Please Login Using Correct UserName and Password' });
+      return;
+    }
     const { dataValues } = user[0];
     const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
     shaObj.update(request.body.password);

@@ -10,6 +10,7 @@ export default function Login({ setCookie }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const SALT = 'SALT';
 
   const getHash = (input) => {
@@ -23,13 +24,19 @@ export default function Login({ setCookie }) {
   };
 
   const handleLogin = () => {
-    console.log(email);
-    console.log(password);
+    // console.log(email);
+    // console.log(password);
     const input = { name: email, password };
     axios.post('/login', input)
       .then((result) => {
         console.log(result);
         const { data } = result;
+
+        if (data.noUser === true) {
+          setError(data.error);
+          return;
+        }
+
         console.log(data[0].id);
         setCookie('userId', data[0].id, { path: '/' });
 
@@ -39,6 +46,7 @@ export default function Login({ setCookie }) {
         const hashCookieString = loggedInCookie.getHash('HEX');
 
         setCookie('sessionId', hashCookieString, { path: '/' });
+        setError('');
         // setCookie('sessionId', data, { path: '/' });
         // setCookie('sessionId', uniqid(), { path: '/' });
         navigate('/');
@@ -95,8 +103,12 @@ export default function Login({ setCookie }) {
             </Link>
 
           </p>
+          <div>
+            <h3 className="error-div">{error}</h3>
+          </div>
         </div>
       </div>
+
     </div>
 
   );
