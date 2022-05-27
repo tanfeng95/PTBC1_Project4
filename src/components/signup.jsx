@@ -9,6 +9,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSignup = () => {
     console.log(email);
@@ -16,7 +17,15 @@ export default function Signup() {
     const input = { name: email, password };
     axios.post('/signup', input)
       .then((result) => {
+        const { data } = result;
+        console.log(data);
+        if (data.noUser === true) {
+          console.log(data);
+          setError(data.error);
+          return;
+        }
         console.log(result);
+        setError('');
         navigate('/login');
       }).catch((err) => {
         console.log(err);
@@ -59,19 +68,11 @@ export default function Signup() {
               </div>
             </div>
           </form>
-          {/* <p className="mt-8 text-xs font-light text-center text-gray-700">
-            {' '}
-            Don't have an account?
-            {' '}
-            <Link to="/signup">
-              {' '}
-              <a href="#" className="font-medium text-purple-600 hover:underline">
-                Sign up
-              </a>
-            </Link>
-
-          </p> */}
+          <div>
+            <h3 className="error-div">{error}</h3>
+          </div>
         </div>
+
       </div>
     </div>
   );

@@ -31,11 +31,22 @@ export default function initUserController(db) {
     if (dataValues.password === hashedPassword) {
       reponse.send(user);
     } else {
-      response.send(400);
+      reponse.send(400);
     }
   };
-  const signup = async (request, response) => {
+  const signup = async (request, reponse) => {
     console.log(request.body);
+
+    const FindUser = await db.User.findAll({
+      where: {
+        username: request.body.name,
+      },
+    });
+    if (FindUser.length !== 0) {
+      console.log('there a user');
+      reponse.status(200).send({ noUser: true, error: 'Please Choose another username' });
+      return;
+    }
 
     const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
     shaObj.update(request.body.password);
@@ -45,9 +56,9 @@ export default function initUserController(db) {
       password: hashedPassword,
     };
     const createUser = await db.User.create(user);
-    response.send(createUser);
+    reponse.send(createUser);
   };
-  const getUserById = async (request, response) => {
+  const getUserById = async (request, reponse) => {
     console.log(request.body);
   };
   return {
