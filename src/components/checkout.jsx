@@ -32,7 +32,7 @@ export default function Checkout({ checkState, quanitylist }) {
     console.log(newTotal);
     sum += newTotal;
     return (
-      <div className="d-flex justify-content-around cart-item align-items-center">
+      <div className="flex justify-center items-center cart-item">
         <figure><img className="image-cart" src={items.image} alt="Album" /></figure>
         <h6 className="cart-item-title">
           {items.title}
@@ -42,10 +42,12 @@ export default function Checkout({ checkState, quanitylist }) {
           $
           {items.price}
         </p>
-        <p>
+        <p className="m-5">
           Amount
-          {' '}
-          {items.quanity}
+          <p className="flex justify-center">
+            {items.quanity}
+          </p>
+
         </p>
       </div>
     );
@@ -79,7 +81,7 @@ export default function Checkout({ checkState, quanitylist }) {
         <h4>Item Selected</h4>
         {itemList}
       </div>
-      <div className="d-flex align-items-end flex-column
+      <div className="flex items-end flex-col
       cart-order-summary-div"
       >
         <h6>

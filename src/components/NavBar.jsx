@@ -31,8 +31,8 @@ export default function Navbar() {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl ">
-          <span>book</span>
+        <Link to="/" className="font-title text-primary inline-flex text-lg transition-all duration-200 md:text-3xl ">
+          <span className="lowercase">Book</span>
           <span className="text-base-content uppercase">UI</span>
         </Link>
       </div>

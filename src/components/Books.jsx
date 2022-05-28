@@ -19,7 +19,7 @@ export default function Books({ bookList, setbookList }) {
   }, []);
 
   const newBooks = bookList.map((x) => (
-    <div className="card shadow-x card-div" key={x.id} style={{ width: `${13}rem` }}>
+    <div className="card w-96 bg-base-100 shadow-xl card-div" key={x.id} style={{ width: `${13}rem` }}>
       <Link to={`/book/${x.id}`}>
         <figure><img className="img-fluid image-size" src={x.image} alt="books" /></figure>
       </Link>
@@ -38,6 +38,7 @@ export default function Books({ bookList, setbookList }) {
         <Link to={`/book/${x.id}`} style={{ display: 'block', margin: '1rem 0' }} key={x.id}>book</Link>
       </div> */}
     </div>
+
   ));
 
   const handleSearch = (event) => {
@@ -60,13 +61,13 @@ export default function Books({ bookList, setbookList }) {
   return (
     <div>
       <Navbar />
-      <div className="search-div d-flex justify-content-center">
+      <div className="search-div flex justify-center">
         <input type="text" placeholder="Search…" className="input input-bordered search" onChange={(event) => setSearch(event.target.value)} />
         <button className="btn btn-square" type="button" onClick={handleSearch}>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </button>
       </div>
-      <div className="row over d-flex justify-content-around">
+      <div className="flex flex-wrap book-list ">
         {bookList.length > 0 && (
         <>
           {newBooks}

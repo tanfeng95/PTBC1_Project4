@@ -5,7 +5,6 @@ import {
   useParams, Link, Outlet, useNavigate,
 } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
 import Zoom from 'react-img-zoom';
 import Navbar from './NavBar.jsx';
 
@@ -51,7 +50,7 @@ export default function Book() {
         {book && (
         <>
           <div className="book-content">
-            <div className="d-flex book-main">
+            <div className="flex  book-main">
               {/* <div className="image-div">
                 <figure><img src={`/${book.image}`} alt="Album" /></figure>
               </div> */}
@@ -81,7 +80,7 @@ export default function Book() {
                   <option>7</option>
                   <option>8</option>
                   <option>9</option>
-                  <option>510</option>
+                  <option>10</option>
                 </select>
                 <div className="card-actions justify-end">
                   <Link to="/cart">
@@ -121,7 +120,7 @@ export default function Book() {
       {showModal ? (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+            className=" flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/* content */}

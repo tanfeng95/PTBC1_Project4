@@ -48,7 +48,7 @@ export default function UserOrder() {
           {x.books.map((element, index) => {
             console.log(element);
             return (
-              <div className="d-flex align-items-center ">
+              <div className="flex justify-center items-center ">
                 <p className="order-item">
                   Item
                   {' '}
