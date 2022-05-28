@@ -50,7 +50,7 @@ export default function Book() {
         {book && (
         <>
           <div className="book-content">
-            <div className="flex  book-main">
+            <div className="flex book-main m-6">
               {/* <div className="image-div">
                 <figure><img src={`/${book.image}`} alt="Album" /></figure>
               </div> */}
