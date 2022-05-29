@@ -22,7 +22,9 @@ export default function Navbar() {
       setCartItem(values);
     }
   }, []);
-
+  /**
+ * handle logout
+ */
   const handleLogout = () => {
     setShowModal(true);
     removeCookie('userId', { path: '/' });

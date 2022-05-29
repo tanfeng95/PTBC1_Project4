@@ -9,7 +9,9 @@ import Navbar from './NavBar.jsx';
 export default function UserOrder() {
   const [orderList, setOrderList] = useState([]);
   const navigate = useNavigate();
-
+  /**
+ * search for user past order by user id
+ */
   useEffect(() => {
     let userId;
     if (Cookies.get('userId') !== undefined) {
@@ -29,6 +31,9 @@ export default function UserOrder() {
         console.log(err);
       });
   }, []);
+  /**
+   * return all order inside order list
+   */
   const newOrder = orderList.map((x) => {
     // console.log(x);
     const date = new Date();

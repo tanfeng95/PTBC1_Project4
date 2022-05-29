@@ -6,6 +6,10 @@ import Navbar from './NavBar.jsx';
 
 export default function Books({ bookList, setbookList }) {
   const [search, setSearch] = useState('');
+  /**
+   * when user first go into default page
+   * find all books and populate into the book list usestate
+   */
   useEffect(() => {
     axios.get('/books')
       .then((result) => {
@@ -18,6 +22,10 @@ export default function Books({ bookList, setbookList }) {
       });
   }, []);
 
+  /**
+   * for each book in the book list map and return a card
+   * which include a image, name and price
+   */
   const newBooks = bookList.map((x) => (
     <div className="card w-96 bg-base-100 shadow-xl card-div" key={x.id} style={{ width: `${13}rem` }}>
       <Link to={`/book/${x.id}`}>
@@ -41,6 +49,10 @@ export default function Books({ bookList, setbookList }) {
 
   ));
 
+  /**
+   * handle on search event
+   * @param {} event
+   */
   const handleSearch = (event) => {
     console.log(search);
     axios.get('/books', {

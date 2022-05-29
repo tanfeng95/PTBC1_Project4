@@ -16,6 +16,10 @@ export default function Book() {
   const params = useParams();
   const navigate = useNavigate();
 
+  /**
+   * when user click on single book
+   * search for the book bu params and populate the book
+   */
   useEffect(() => {
     axios.get(`/book/${params.id}`)
       .then((result) => {
@@ -24,6 +28,10 @@ export default function Book() {
       });
   }, []);
 
+  /**
+   *  handle add to cart button
+   * @returns
+   */
   const handleAddToCartBtn = () => {
     if (Cookies.get('sessionId') === undefined) {
       navigate('/login');
@@ -33,6 +41,10 @@ export default function Book() {
     setName(book);
     setShowModal(true);
   };
+  /**
+   * handle buy now button
+   * @returns
+   */
   const handleBuyNowBtn = () => {
     if (Cookies.get('sessionId') === undefined) {
       navigate('/login');

@@ -11,7 +11,11 @@ export default function Checkout({ checkState, quanitylist }) {
   const [checkoutList, setCheckoutList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [showModal, setShowModal] = React.useState(false);
+  const [sum, setSum] = useState(0);
 
+  /**
+   * get item from local storage and item selected go into item list
+   */
   useEffect(() => {
     const values = [];
     const keys = Object.keys(localStorage);
@@ -26,11 +30,15 @@ export default function Checkout({ checkState, quanitylist }) {
     setCheckoutList(values);
   }, []);
 
-  let sum = 0;
+  /**
+   *for each item in check out list
+   */
+  // let sum = 0;
   const itemList = checkoutList.map((items, index) => {
     const newTotal = totalPrice + (Number(items.price) * Number(items.quanity));
     console.log(newTotal);
-    sum += newTotal;
+    // sum += newTotal;
+    setSum(sum + newTotal);
     return (
       <div className="flex justify-center items-center cart-item">
         <figure><img className="image-cart" src={items.image} alt="Album" /></figure>
@@ -52,7 +60,9 @@ export default function Checkout({ checkState, quanitylist }) {
       </div>
     );
   });
-
+  /**
+ * handle place order add into order data base
+ */
   const handlePlaceOrder = () => {
     setShowModal(true);
     console.log(Cookies.get('userId'));

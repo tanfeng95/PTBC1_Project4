@@ -2,6 +2,11 @@ import { response } from 'express';
 import jsSHA from 'jssha';
 
 const { SALT } = process.env.SALT;
+/**
+ * create a hash from input varible
+ * @param {string} input
+ * @returns
+ */
 const getHash = (input) => {
   // create new SHA object
   const shaObj = new jsSHA('SHA-512', 'TEXT', { encoding: 'UTF8' });
@@ -12,7 +17,18 @@ const getHash = (input) => {
   return shaObj.getHash('HEX');
 };
 
+/**
+ * login controller which deal with all login based function
+ * @param {} db
+ * @returns
+ */
 export default function initUserController(db) {
+  /**
+   * user login , find the user by name and match password before, return user result to client
+   * @param {*} request
+   * @param {*} reponse
+   * @returns
+   */
   const login = async (request, reponse) => {
     const user = await db.User.findAll({
       where: {
@@ -34,6 +50,12 @@ export default function initUserController(db) {
       reponse.send(400);
     }
   };
+  /**
+   * user sign up function add a new user into data base
+   * @param {} request
+   * @param {*} reponse
+   * @returns
+   */
   const signup = async (request, reponse) => {
     console.log(request.body);
 
@@ -58,11 +80,11 @@ export default function initUserController(db) {
     const createUser = await db.User.create(user);
     reponse.send(createUser);
   };
-  const getUserById = async (request, reponse) => {
-    console.log(request.body);
-  };
+  // const getUserById = async (request, reponse) => {
+  //   console.log(request.body);
+  // };
   return {
-    getUserById,
+    // getUserById,
     login,
     signup,
   };

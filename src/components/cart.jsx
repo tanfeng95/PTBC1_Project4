@@ -17,6 +17,9 @@ export default function Cart({
     navigate('/login');
   }
 
+  /**
+ * get items from local storage and put it in item list
+ */
   useEffect(() => {
     const values = [];
     const keys = Object.keys(localStorage);
@@ -31,6 +34,10 @@ export default function Cart({
     setQuantityList(new Array(values.length).fill(1));
   }, []);
 
+  /**
+   * handle check box changes
+   * @param {*} position
+   */
   const handleOnChange = (position) => {
     const updateCheckState = checkState.map((item, index) => {
       if (index === position)
@@ -52,13 +59,19 @@ export default function Cart({
       0,
     );
     setTotal(totalPrice);
-    const isItemChecked = updateCheckState.map(((isTrue, index) => {
-      if (isTrue === true) {
-        console.log(itemlist[index]);
-      }
-    }));
+
+    // const isItemChecked = updateCheckState.map(((isTrue, index) => {
+    //   if (isTrue === true) {
+    //     console.log(itemlist[index]);
+    //   }
+    // }));
   };
 
+  /**
+   *  handle value changes
+   * @param {} position
+   * @param {*} targetValue
+   */
   const handleSelectValue = (position, targetValue) => {
     const updateQuantityList = quanitylist.map((value, index) => {
       if (index === position) {
@@ -81,6 +94,10 @@ export default function Cart({
     setTotal(totalPrice);
   };
 
+  /**
+   * handle delete item button on click
+   * @param {*} position
+   */
   const handleDeleteItem = (position) => {
     console.log('delete');
     console.log(position);
@@ -104,9 +121,12 @@ export default function Cart({
     }
   };
 
-  function sleep(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  // function sleep(ms) {
+  //   return new Promise((resolve) => setTimeout(resolve, ms));
+  // }
+  /**
+   *  return items in item list
+   */
   // show items in cart and total value
   const cartList = itemlist.map((items, index) => (
     <div className="flex justify-center items-center cart-item">

@@ -22,7 +22,9 @@ export default function Login({ setCookie }) {
     shaObj.update(unhashedString);
     return shaObj.getHash('HEX');
   };
-
+  /**
+ * handle login button
+ */
   const handleLogin = () => {
     // console.log(email);
     // console.log(password);
